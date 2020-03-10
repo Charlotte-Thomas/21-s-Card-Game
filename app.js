@@ -56,7 +56,7 @@ function setupGame() {
       return a + b
     })
     if (sum > 21) {
-      bust = true 
+      bust = true
     }
     return sum
   }
@@ -98,7 +98,7 @@ function setupGame() {
       // add(dealersHand)
       if (add(dealersHand) > 21) {
         console.log('dealer is bust')
-      } 
+      }
     }
     console.log(add(dealersHand))
     if (add(dealersHand) > add(samsHand) && add(dealersHand) <= 21 || bust && add(dealersHand) <= 21) {
@@ -106,8 +106,26 @@ function setupGame() {
     }
   }
 
-  startGame()
 
+
+  restartButton.addEventListener('click', () => {
+    console.log('hi')
+    popArray(samsHand)
+    popArray(dealersHand)
+    popArray(cardsInPlay)
+    console.log(sam.children.length)
+    while (sam.children.length > 3) {
+      sam.removeChild(sam.lastChild)
+    }
+    // console.log(sam)
+    startGame()
+  })
+
+  function popArray(array) {
+    array.splice(0, array.length)
+  }
+
+  startGame()
 
 
 
