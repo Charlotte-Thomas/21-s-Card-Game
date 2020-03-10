@@ -86,7 +86,7 @@ function setupGame() {
         console.log('sam wins')
         return
       }
-      console.log(add(samsHand))
+      console.log('sams hand', add(samsHand))
     }
     while (!bust && add(dealersHand) <= add(samsHand)) {
       const split = randomCard()
@@ -100,7 +100,7 @@ function setupGame() {
         console.log('dealer is bust')
       }
     }
-    console.log(add(dealersHand))
+    console.log('dealers hand', add(dealersHand))
     if (add(dealersHand) > add(samsHand) && add(dealersHand) <= 21 || bust && add(dealersHand) <= 21) {
       console.log('dealer wins')
     }
@@ -109,13 +109,15 @@ function setupGame() {
 
 
   restartButton.addEventListener('click', () => {
-    console.log('hi')
     popArray(samsHand)
     popArray(dealersHand)
     popArray(cardsInPlay)
-    console.log(sam.children.length)
+    bust = false
     while (sam.children.length > 3) {
       sam.removeChild(sam.lastChild)
+    }
+    while (dealer.children.length > 3) {
+      dealer.removeChild(dealer.lastChild)
     }
     // console.log(sam)
     startGame()
