@@ -19,7 +19,9 @@ body {
   display: flex;
   width: 70%;
   justify-content: space-evenly;
-  background: pink;
+  /* background: pink; */
+  height: 300px;
+  padding: 20px 0;
 }
 
 .deck {
@@ -28,4 +30,40 @@ body {
 
 .restartButton {
   padding: 10px;
+}
+
+.bust {
+  display: none;
+}
+
+.score {
+  display: none;
+}
+
+.bust2 {
+  display: none;
+}
+
+.score2 {
+  display: none;
+}
+
+.sam {
+  /* width: 40%; */
+  border-bottom: 2px solid black;
+}
+
+.dealer {
+  /* width: 40%; */
+  border-bottom: 2px solid black;
+}
+
+.container1 {
+  width: 40%;
+  border: 2px solid black;
+}
+
+.container2 {
+  width: 40%;
+  border: 2px solid black;
 }

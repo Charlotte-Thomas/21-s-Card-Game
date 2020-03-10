@@ -7,10 +7,18 @@ function setupGame() {
   const sam = document.querySelector('.sam')
   const dealer = document.querySelector('.dealer')
 
+  const samContainer = document.querySelector('.container1')
+  const dealerContainer = document.querySelector('.container2')
+
   const cardOne = document.querySelector('.cardOne')
   const cardTwo = document.querySelector('.cardTwo')
   const cardThree = document.querySelector('.cardThree')
   const cardFour = document.querySelector('.cardFour')
+
+  const busted = document.querySelector('.bust')
+  const busted2 = document.querySelector('.bust2')
+  const score = document.querySelector('.score')
+  const score2 = document.querySelector('.score2')
 
   const firstCards = [cardOne, cardTwo, cardThree, cardFour]
 
@@ -57,6 +65,26 @@ function setupGame() {
     })
     if (sum > 21) {
       bust = true
+      if (hand === samsHand) {
+        busted.style.display = 'block'
+        samContainer.style.backgroundColor = 'rgb(142, 72, 72)'
+        dealerContainer.style.backgroundColor = 'rgb(78, 132, 78)'
+      }
+      if (hand === dealersHand) {
+        busted2.style.display = 'block'
+        samContainer.style.backgroundColor = 'rgb(78, 132, 78)'
+        dealerContainer.style.backgroundColor = 'rgb(142, 72, 72)'
+      }
+    }
+    if (hand === samsHand) {
+      score.style.display = 'block'
+      score.innerHTML = 'score:' + ' ' + sum
+    }
+    if (hand === dealersHand) {
+      score2.innerHTML = 'score:' + ' ' + sum
+    }
+    if (hand === samsHand) {
+      score2.style.display = 'block'
     }
     return sum
   }
@@ -64,9 +92,12 @@ function setupGame() {
   function checkHand() {
     if (cardsInPlay[0] + cardsInPlay[1] === 21) {
       console.log('sam wins')
+      samContainer.style.backgroundColor = 'rgb(78, 132, 78)'
+      dealerContainer.style.backgroundColor = 'rgb(142, 72, 72)'
       return
     } else if (cardsInPlay[2] + cardsInPlay[3] === 21) {
       console.log('dealer wins')
+      dealerContainer.style.backgroundColor = 'rgb(78, 132, 78)'
       return
     } else if (!bust && add(samsHand) < 17) {
       while (add(samsHand) < 17) {
@@ -80,10 +111,14 @@ function setupGame() {
         add(samsHand)
         if (bust) {
           console.log('sam is bust')
+          samContainer.style.backgroundColor = 'rgb(142, 72, 72)'
+          dealerContainer.style.backgroundColor = 'rgb(78, 132, 78)'
         }
       }
       if (add(samsHand) === 21) {
         console.log('sam wins')
+        samContainer.style.backgroundColor = 'rgb(78, 132, 78)'
+        dealerContainer.style.backgroundColor = 'rgb(142, 72, 72)'
         return
       }
       console.log('sams hand', add(samsHand))
@@ -98,13 +133,18 @@ function setupGame() {
       // add(dealersHand)
       if (add(dealersHand) > 21) {
         console.log('dealer is bust')
+        samContainer.style.backgroundColor = 'rgb(78, 132, 78)'
+        dealerContainer.style.backgroundColor = 'rgb(142, 72, 72)'
       }
     }
     console.log('dealers hand', add(dealersHand))
     if (add(dealersHand) > add(samsHand) && add(dealersHand) <= 21 || bust && add(dealersHand) <= 21) {
       console.log('dealer wins')
+      samContainer.style.backgroundColor = 'rgb(142, 72, 72)'
+      dealerContainer.style.backgroundColor = 'rgb(78, 132, 78)'
     }
   }
+
 
 
 
@@ -113,6 +153,10 @@ function setupGame() {
     popArray(dealersHand)
     popArray(cardsInPlay)
     bust = false
+    busted.style.display = 'none'
+    busted2.style.display = 'none'
+    samContainer.style.backgroundColor = 'pink'
+    dealerContainer.style.backgroundColor = 'pink'
     while (sam.children.length > 3) {
       sam.removeChild(sam.lastChild)
     }
