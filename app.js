@@ -94,12 +94,15 @@ function setupGame() {
       console.log('sam wins')
       samContainer.style.backgroundColor = 'rgb(78, 132, 78)'
       dealerContainer.style.backgroundColor = 'rgb(142, 72, 72)'
+      add(dealersHand)
+      console.log(add(samsHand))
       return
     } else if (cardsInPlay[2] + cardsInPlay[3] === 21) {
       console.log('dealer wins')
       dealerContainer.style.backgroundColor = 'rgb(78, 132, 78)'
+      samContainer.style.backgroundColor = 'rgb(78, 132, 78)'
       return
-    } else if (!bust && add(samsHand) < 17) {
+    } else if (!bust && add(samsHand) < 17 && add(dealersHand) !== 21) {
       while (add(samsHand) < 17) {
         const split = randomCard()
         samsHand.push(parseInt(split.split(' ')[0]))
